@@ -24,7 +24,7 @@
         </div>
         <div>
             <label for="">Quantity</label>
-            <input type="text" name="quantity" value="{{ $supplier->supplier_name }}">
+            <input type="text" name="quantity" value="{{ $supplier->quantity }}">
         </div>
         <div>
             <label for="">Supplier Contact</label>

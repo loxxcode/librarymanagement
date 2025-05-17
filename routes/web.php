@@ -46,5 +46,6 @@ Route::put('/borrows/edit/{id}', [BorrowController::class, 'update'])->name('bor
 Route::delete('/borrows/delete/{id}', [BorrowController::class, 'destroy'])->name('borrows.delete');
 
 Route::get('/report', [BorrowController::class, 'report'])->name('report');
+Route::get('/report/date', [BorrowController::class, 'datereport'])->name('datereport');
 
 require __DIR__.'/auth.php';

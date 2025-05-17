@@ -112,4 +112,14 @@ class BorrowController extends Controller
         $borrow = Borrow::all()->count();
         return view('dashboard', compact(["book", "supplier", "member", "borrow"]));
     }
+    public function datereport(Request $request){
+        $request->validate([
+            "startDate"=> "required|date",
+            "endDate"=> "required|date",
+        ]);
+        $borrow = Borrow::with('books', 'members')
+            ->whereBetween('borrow_date', [$request->startDate, $request->endDate])
+            ->get();
+        return view('report', compact('borrow'))->with("success", "Report from " . $request->startDate . " to " . $request->endDate);
+    }
 }

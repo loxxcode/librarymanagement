@@ -11,6 +11,28 @@
         </div>
     </x-slot>
 <div class="container mt-4">
+    <div class="date">
+        <form action="{{ route('datereport') }}" method="get">
+            @csrf
+            @method('GET')
+            <div>
+                <label for="">Start Date</label>
+                <input type="date" name="startDate" placeholder="Start Date">
+            </div>
+            <div>
+                <label for="">End Date</label>
+                <input type="date" name="endDate" placeholder="End Date">
+            </div>
+            <input type="submit" value="Generate Report">
+        </form>
+    </div>
+    <div>
+        @if (session('success'))
+            <div class="success">
+                {{ session('success') }}
+            </div>
+        @endif
+    </div>
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
@@ -45,6 +67,34 @@
 </div>
 </x-app-layout>
 <style>
+        form{
+            display: flex;
+            justify-content: center;
+        }
+        .date{
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .date div{
+            margin: 0 1rem;
+        }
+        .date input[type="date"]{
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .date input[type="submit"]{
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        .date input[type="submit"]:hover{
+            background-color: #0056b3;
+        }
         .button{
             display: flex;
             background: white;
@@ -82,7 +132,7 @@
         .delete:hover{
             color: red;
         }
-        .fail{
+        .success{
             position: absolute;
             margin-top: 3rem;
             margin-left: 30rem;
